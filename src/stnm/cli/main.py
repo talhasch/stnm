@@ -18,7 +18,7 @@ def main(cmd: str):
     if which("stacks-node") is None:
         error_response(1)
 
-    # check / create config file
+    # check / create default config file
     if not os.path.isfile(config_path()):
         with open(config_path(), "w") as f:
             f.write(DEFAULT_CONFIG)

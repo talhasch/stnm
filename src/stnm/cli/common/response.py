@@ -23,7 +23,8 @@ def error_response(code: int):
 
 SUCCESS = {
     1: "stacks-node process is running",
-    2: "stacks-node process was killed"
+    2: "stacks-node process was killed",
+    3: "stacks-node process started"
 }
 
 
