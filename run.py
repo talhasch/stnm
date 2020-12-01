@@ -22,12 +22,17 @@ def main():
     )
 
     parser.add_argument("cmd", choices=cmd_list, nargs="?", default="status")
+    parser.add_argument("arg", nargs="?", default="")
 
     args = parser.parse_args()
     cmd = args.cmd
+    arg = args.arg
+
+    if cmd == "config" and arg == "":
+        parser.error("configuration parameter required. e.g node.miner=true")
 
     from stnm.cli.main import main
-    main(cmd)
+    main(cmd, arg)
 
 
 if __name__ == '__main__':

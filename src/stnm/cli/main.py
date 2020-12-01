@@ -10,7 +10,7 @@ from stnm.cli.status import status
 from stnm.cli.stop import stop
 
 
-def main(cmd: str):
+def main(cmd: str, arg: str):
     if cmd == "install":
         install()
 
@@ -34,4 +34,4 @@ def main(cmd: str):
         stop()
 
     if cmd == "config":
-        config()
+        config(arg)
