@@ -1,7 +1,12 @@
+import shutil
 import subprocess
 from typing import Optional
 
 import psutil
+
+
+def get_executable(name: str) -> Optional[psutil.Process]:
+    return shutil.which(name)
 
 
 def get_node_process() -> Optional[psutil.Process]:

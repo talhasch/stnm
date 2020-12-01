@@ -6,6 +6,10 @@ assert sys.version_info[0] == 3 and sys.version_info[1] >= 5, "Requires Python 3
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
+if sys.platform not in ["linux", "linux2", "darwin"]:
+    print("stnm supports only macos and linux")
+    sys.exit(1)
+
 
 def main():
     parser = argparse.ArgumentParser(description="")
@@ -14,6 +18,7 @@ def main():
         "status",
         "start",
         "stop",
+        "config",
     )
 
     parser.add_argument('cmd', choices=cmd_list, nargs='?', default="status")
@@ -21,21 +26,8 @@ def main():
     args = parser.parse_args()
     cmd = args.cmd
 
-    if cmd == "install":
-        from stnm.cli.commands.install import main
-        main()
-
-    if cmd == "status":
-        from stnm.cli.commands.status import main
-        main()
-
-    if cmd == "start":
-        from stnm.cli.commands.start import main
-        main()
-
-    if cmd == "stop":
-        from stnm.cli.commands.stop import main
-        main()
+    from stnm.cli.main import main
+    main(cmd)
 
 
 if __name__ == '__main__':
