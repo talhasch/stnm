@@ -1,7 +1,7 @@
-import shutil
-from typing import Optional
 import os
+import shutil
 from pathlib import Path
+from typing import Optional
 
 
 def which(name: str) -> Optional[str]:
@@ -9,4 +9,4 @@ def which(name: str) -> Optional[str]:
 
 
 def config_path() -> str:
-    return os.path.join(str(Path.home()), "stnm.conf")
+    return os.path.abspath(os.path.join(str(Path.home()), "stnm.conf"))

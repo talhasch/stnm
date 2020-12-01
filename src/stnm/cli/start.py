@@ -12,7 +12,7 @@ home_path = str(Path.home())
 def start():
     process = get_node_process()
     if process is not None:
-        error_response("stacks-node is already running")
+        error_response(3)
 
 
     # check if its already working

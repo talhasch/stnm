@@ -6,10 +6,10 @@ from stnm.cli.common.response import error_response, success_response
 def stop():
     process = get_node_process()
     if process is None:
-        error_response("node process not found")
+        error_response(2)
 
     try:
         process.kill()
-        success_response("node process stopped")
+        success_response(2)
     except Exception:
-        error_response("could not stopped node process")
+        error_response(4)

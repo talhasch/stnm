@@ -16,7 +16,7 @@ def main(cmd: str):
 
     # check node binary
     if which("stacks-node") is None:
-        error_response("stacks-node not installed. consider running stnm install.")
+        error_response(1)
 
     # check / create config file
     if not os.path.isfile(config_path()):

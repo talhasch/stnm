@@ -7,6 +7,6 @@ def status():
     process = get_node_process()
 
     if process is None:
-        error_response("node process not found")
+        error_response(2)
 
-    success_response("node process running", **{"cmd": process.cmdline()})
+    success_response(1, **{"cmd": process.cmdline()})

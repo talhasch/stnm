@@ -1,8 +1,17 @@
 import json
 import sys
 
+ERROR = {
+    1: "stacks-node not installed. install manually or run `stnm install",
+    2: "stacks-node process not found",
+    3: "stacks-node is already running",
+    4: "could not stopped node process"
+}
 
-def error_response(message: str):
+
+def error_response(code: int):
+    message = ERROR[code]
+
     resp = {
         "error": True,
         "message": message
@@ -12,7 +21,15 @@ def error_response(message: str):
     sys.exit(1)
 
 
-def success_response(message: str, **kwargs):
+SUCCESS = {
+    1: "stacks-node process is running",
+    2: "stacks-node process was killed"
+}
+
+
+def success_response(code: int, **kwargs):
+    message = SUCCESS[code]
+
     resp = {
         **{"success": True, "message": message},
         **kwargs
