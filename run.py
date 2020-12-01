@@ -21,7 +21,7 @@ def main():
         "config",
     )
 
-    parser.add_argument('cmd', choices=cmd_list, nargs='?', default="status")
+    parser.add_argument("cmd", choices=cmd_list, nargs="?", default="status")
 
     args = parser.parse_args()
     cmd = args.cmd
