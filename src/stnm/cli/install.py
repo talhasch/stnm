@@ -7,20 +7,20 @@ from stnm.cli.common.util import which
 
 GREEN_COLOR = "\033[92m"
 RED_COLOR = "\033[91m"
-GRAY_COLOR = "\033[90m"
+GRAY_COLOR = "\033[37m"
 END_COLOR = "\033[0m"
 
 
 def success(s: str):
-    print("{}{}{}".format(GREEN_COLOR, s, END_COLOR))
+    print("{}stnm: {}{}".format(GREEN_COLOR, s, END_COLOR))
 
 
 def error(s: str):
-    print("{}{}{}".format(RED_COLOR, s, END_COLOR))
+    print("{}stnm: {}{}".format(RED_COLOR, s, END_COLOR))
 
 
 def info(s: str):
-    print("{}{}{}".format(GRAY_COLOR, s, END_COLOR))
+    print("{}stnm: {}{}".format(GRAY_COLOR, s, END_COLOR))
 
 
 def run_cmd(cmd: str) -> subprocess.CompletedProcess:
@@ -78,7 +78,7 @@ def install():
         success("stacks-blockchain has built successfully.")
 
     bin_source = os.path.join(chain_dir, "target", "release", "stacks-node")
-    bin_dest = os.path.join(home_dir, ".cargo", "bin")
+    bin_dest = os.path.join(home_dir, ".cargo", "bin", "stacks-node")
     shutil.copyfile(bin_source, bin_dest)
     success("stacks-node binary copied to cargo directory.")
 
