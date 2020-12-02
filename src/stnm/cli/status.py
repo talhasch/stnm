@@ -9,4 +9,4 @@ def status():
     if process is None:
         error_response(2)
 
-    success_response(1, **{"cmd": process.cmdline()})
+    success_response(1, **{"pid": process.pid})
