@@ -1,47 +1,90 @@
-from stnm.cli.common.util import which
-import sys
+import os
+import shutil
+import subprocess
 from pathlib import Path
-import logging
 
-logging.basicConfig(level=logging.INFO)
+from stnm.cli.common.util import which
+
+GREEN_COLOR = "\033[92m"
+RED_COLOR = "\033[91m"
+GRAY_COLOR = "\033[90m"
+END_COLOR = "\033[0m"
+
+
+def success(s: str):
+    print("{}{}{}".format(GREEN_COLOR, s, END_COLOR))
+
+
+def error(s: str):
+    print("{}{}{}".format(RED_COLOR, s, END_COLOR))
+
+
+def info(s: str):
+    print("{}{}{}".format(GRAY_COLOR, s, END_COLOR))
+
+
+def run_cmd(cmd: str) -> subprocess.CompletedProcess:
+    return subprocess.run(cmd, shell=True, universal_newlines=True)
 
 
 def install():
     if which("stacks-node") is not None:
-        logging.info("stacks-node already installed.")
+        success("stacks-node already installed.")
         return
 
-    if which("git") is not None:
-        # git is required
-        pass
+    if which("git") is None:
+        error("git is not found on your system. please install it first.")
+        return
 
     if which("apt-get") is not None:
-        # install essentials
-        #  apt-get install build-essential cmake libssl-dev pkg-config
-        pass
+        info("install essentials for linux...")
+        cmd = "apt-get install build-essential cmake libssl-dev pkg-config -y"
+        if run_cmd(cmd).returncode != 0:
+            error("an error occurred while installing essentials.")
+        else:
+            success("essentials installed successfully.")
 
-    if which("rustc") is None:
-        # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        # source $HOME/.cargo/env
-        # assert which("rustc") is not None
-        pass
+    info("checking rust...")
+    if run_cmd("rustc --version").returncode != 0:
+        info("installing rust.")
+        cmd = "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+        if run_cmd(cmd).returncode != 0:
+            error("an error occurred while installing rust.")
+        else:
+            success("rust installed successfully.")
+    else:
+        success("rust is already installed.")
 
-    # git clone https://github.com/blockstack/stacks-blockchain.git
-    # cd stacks-blockchain
-    # cp target/release/stacks-node $HOME/.cargo/bin
-    pass
+    home_dir = os.path.abspath(str(Path.home()))
 
-    home_path = str(Path.home())
+    chain_dir = os.path.join(home_dir, "stacks-blockchain-stnm")
+    if os.path.isdir(chain_dir):
+        shutil.rmtree(chain_dir)
 
-    exit()
+    cmd = "git clone https://github.com/blockstack/stacks-blockchain.git {}".format(chain_dir)
+    info("downloading stacks-blockchain...")
+    if run_cmd(cmd).returncode != 0:
+        error("an error occurred while downloading.")
+    else:
+        success("stacks-blockchain downloaded.")
 
-    node = which("stacks-node")
-    git = which("git")
-    apt = which("apt-get")
-    rustc = which("rustc")
+    os.chdir(chain_dir)
 
-    if sys.platform == "linux":
-        pass
-        # apt-get install build-essential cmake libssl-dev pkg-config
+    cmd = "cargo build --workspace --release --bin stacks-node"
+    info("building stacks-blockchain...")
+    if run_cmd(cmd).returncode != 0:
+        error("an error occurred while building.")
+    else:
+        success("stacks-blockchain has built successfully.")
 
-    print(rustc)
+    bin_source = os.path.join(chain_dir, "target", "release", "stacks-node")
+    bin_dest = os.path.join(home_dir, ".cargo", "bin")
+    shutil.copyfile(bin_source, bin_dest)
+    success("stacks-node binary copied to cargo directory.")
+
+    # clean up
+    shutil.rmtree(chain_dir)
+
+    assert which("stacks-node") is not None
+
+    success("installation completed successfully 🎉")
