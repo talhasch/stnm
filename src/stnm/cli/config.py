@@ -1,7 +1,8 @@
-import argparse
 import re
-from stnm.cli.common.response import error_response, success_response
+
 import toml
+
+from stnm.cli.common.response import error_response, success_response
 from stnm.cli.common.util import config_path
 
 
@@ -16,7 +17,7 @@ def bool_validator(s: str) -> bool:
     if s in ["false", "False"]:
         return False
 
-    raise NotValidValue("Not a valid boolean value")
+    raise NotValidValue("{} is not a valid boolean value. Use True or true or False or false".format(s))
 
 
 def str_validator(s: str) -> str:
@@ -27,7 +28,7 @@ def int_validator(s: str):
     if re.compile("^[0-9]+$").match(s):
         return int(s)
 
-    raise NotValidValue("Not a valid integer value")
+    raise NotValidValue("{} is not a valid integer value".format(s))
 
 
 PARAMS = {
@@ -41,24 +42,32 @@ PARAMS = {
 
 
 def config(arg: str):
+    with open(config_path(), "r") as f:
+        config_contents = f.read()
+        f.close()
+
+    if arg == "show":
+        print("-" * 60)
+        print("Config file located at: {}".format(config_path()))
+        print("-" * 60)
+        print(config_contents)
+        print("-" * 60)
+        return
+
     param_value = arg.split("=")
     if len(param_value) != 2:
-        return
+        error_response(5, arg)
 
     [param, raw_value] = param_value
 
     if param not in PARAMS:
-        pass
+        error_response(6, param)
 
     try:
         value = PARAMS[param](raw_value)
     except NotValidValue as ex:
-        print(ex)
+        error_response(7, str(ex))
         return
-
-    with open(config_path(), "r") as f:
-        config_contents = f.read()
-        f.close()
 
     [section, key] = param.split(".")
 
