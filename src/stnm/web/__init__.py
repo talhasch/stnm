@@ -7,12 +7,12 @@ PORT = 5000
 ADDRESS = "127.0.0.1"
 
 
-def run():
+def callback():
     print("Server running at http://{}:{}".format(ADDRESS, PORT))
 
 
-def run_web():
+def web():
     http_server = HTTPServer(WSGIContainer(app))
     http_server.listen(PORT, address=ADDRESS)
-    IOLoop.instance().add_callback(run)
+    IOLoop.instance().add_callback(callback)
     IOLoop.instance().start()

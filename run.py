@@ -32,7 +32,7 @@ def main():
     if cmd == "config" and arg == "":
         parser.error("configuration parameter required. e.g node.miner=true")
 
-    from stnm.main import main
+    from stnm import main
     main(cmd, arg)
 
 
