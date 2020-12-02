@@ -8,6 +8,7 @@ from stnm.cli.install import install
 from stnm.cli.start import start
 from stnm.cli.status import status
 from stnm.cli.stop import stop
+from stnm.web import run_web
 
 
 def main(cmd: str, arg: str):
@@ -35,3 +36,6 @@ def main(cmd: str, arg: str):
 
     if cmd == "config":
         config(arg)
+
+    if cmd == "web":
+        run_web()

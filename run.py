@@ -19,6 +19,7 @@ def main():
         "start",
         "stop",
         "config",
+        "web"
     )
 
     parser.add_argument("cmd", choices=cmd_list, nargs="?", default="status")
@@ -31,7 +32,7 @@ def main():
     if cmd == "config" and arg == "":
         parser.error("configuration parameter required. e.g node.miner=true")
 
-    from stnm.cli.main import main
+    from stnm.main import main
     main(cmd, arg)
 
 
