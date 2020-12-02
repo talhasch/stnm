@@ -3,7 +3,7 @@ import sys
 
 ERROR = {
     1: "stacks-node not installed. install manually or run `stnm install",
-    2: "stacks-node process not found",
+    2: "stacks-node process is not running",
     3: "stacks-node is already running",
     4: "could not stopped node process",
     5: "not a valid config input '{}' example: node.miner=true",
@@ -26,7 +26,7 @@ def error_response(code: int, *arg):
 
 SUCCESS = {
     1: "stacks-node process is running",
-    2: "stacks-node process was killed",
+    2: "stacks-node process killed",
     3: "stacks-node process started",
     4: "config file updated"
 }
