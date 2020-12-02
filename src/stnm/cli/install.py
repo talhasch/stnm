@@ -37,16 +37,16 @@ def install():
         return
 
     if which("apt-get") is not None:
-        info("install essentials for linux...")
+        info("install dependencies for linux...")
         cmd = "apt-get install build-essential cmake libssl-dev pkg-config -y"
         if run_cmd(cmd).returncode != 0:
-            error("an error occurred while installing essentials.")
+            error("an error occurred while installing dependencies.")
         else:
-            success("essentials installed successfully.")
+            success("dependencies installed successfully.")
 
     info("checking rust...")
     if run_cmd("rustc --version").returncode != 0:
-        info("installing rust.")
+        info("installing rust...")
         cmd = "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
         if run_cmd(cmd).returncode != 0:
             error("an error occurred while installing rust.")
@@ -77,10 +77,13 @@ def install():
     else:
         success("stacks-blockchain has built successfully.")
 
-    bin_source = os.path.join(chain_dir, "target", "release", "stacks-node")
-    bin_dest = os.path.join(home_dir, ".cargo", "bin", "stacks-node")
-    shutil.copyfile(bin_source, bin_dest)
-    success("stacks-node binary copied to cargo directory.")
+    cargo_bin_dir = os.path.join(home_dir, ".cargo", "bin")
+    cmd = "cp target/release/stacks-node {}".format(cargo_bin_dir)
+    info("copying stacks-node executable to cargo directory...")
+    if run_cmd(cmd).returncode != 0:
+        error("an error occurred while copying.")
+    else:
+        success("stacks-node executable copied to cargo directory.")
 
     # clean up
     shutil.rmtree(chain_dir)
