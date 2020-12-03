@@ -5,7 +5,7 @@ from typing import Dict
 import toml
 from flask import Flask, jsonify
 
-from stnm.helper import config_path
+from stnm.helper import get_config_path
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def api_stop():
 
 @app.route("/api/config", methods=["GET"])
 def api_config_get():
-    with open(config_path(), "r") as f:
+    with open(get_config_path(), "r") as f:
         config_contents = f.read()
         f.close()
 

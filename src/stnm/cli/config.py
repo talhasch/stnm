@@ -3,7 +3,7 @@ import re
 import toml
 
 from stnm.cli.common.response import error_response, success_response
-from stnm.helper import config_path
+from stnm.helper import get_config_path
 
 
 class NotValidValue(Exception):
@@ -42,7 +42,7 @@ PARAMS = {
 
 
 def config(arg: str):
-    with open(config_path(), "r") as f:
+    with open(get_config_path(), "r") as f:
         config_contents = f.read()
         f.close()
 
@@ -74,7 +74,7 @@ def config(arg: str):
     parsed = toml.loads(config_contents)
     parsed[section][key] = value
 
-    with open(config_path(), "w") as f:
+    with open(get_config_path(), "w") as f:
         f.write(toml.dumps(parsed))
         f.close()
 

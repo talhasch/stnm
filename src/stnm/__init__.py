@@ -8,7 +8,7 @@ from stnm.cli.install import install
 from stnm.cli.start import start
 from stnm.cli.status import status
 from stnm.cli.stop import stop
-from stnm.helper import config_path
+from stnm.helper import get_config_path
 from stnm.web import web
 
 
@@ -21,8 +21,8 @@ def main(cmd: str, arg: str):
         error_response(1)
 
     # check / create default config file
-    if not os.path.isfile(config_path()):
-        with open(config_path(), "w") as f:
+    if not os.path.isfile(get_config_path()):
+        with open(get_config_path(), "w") as f:
             f.write(DEFAULT_CONFIG)
             f.close()
 
