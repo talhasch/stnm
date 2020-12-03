@@ -3,7 +3,7 @@ import re
 import toml
 
 from stnm.cli.common.response import error_response, success_response
-from stnm.helper import get_config_path
+from stnm.helper import get_config_path, get_config, get_config_parsed
 
 
 class NotValidValue(Exception):
@@ -42,11 +42,8 @@ PARAMS = {
 
 
 def config(arg: str):
-    with open(get_config_path(), "r") as f:
-        config_contents = f.read()
-        f.close()
-
     if arg == "show":
+        config_contents = get_config()
         print("-" * 60)
         print("Config file located at: {}".format(get_config_path()))
         print("-" * 60)
@@ -71,7 +68,7 @@ def config(arg: str):
 
     [section, key] = param.split(".")
 
-    parsed = toml.loads(config_contents)
+    parsed = get_config_parsed()
     parsed[section][key] = value
 
     with open(get_config_path(), "w") as f:
