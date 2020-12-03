@@ -3,7 +3,7 @@ import subprocess
 
 from stnm.cli.common.process import get_node_process
 from stnm.cli.common.response import error_response, success_response
-from stnm.cli.common.util import config_path
+from stnm.helper import config_path
 
 
 def start():

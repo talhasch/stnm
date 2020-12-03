@@ -3,7 +3,7 @@ import re
 import toml
 
 from stnm.cli.common.response import error_response, success_response
-from stnm.cli.common.util import config_path
+from stnm.helper import config_path
 
 
 class NotValidValue(Exception):

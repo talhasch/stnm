@@ -2,12 +2,13 @@ import os
 
 from stnm.cli.common.constants import DEFAULT_CONFIG
 from stnm.cli.common.response import error_response
-from stnm.cli.common.util import which, config_path
+from stnm.cli.common.util import which
 from stnm.cli.config import config
 from stnm.cli.install import install
 from stnm.cli.start import start
 from stnm.cli.status import status
 from stnm.cli.stop import stop
+from stnm.helper import config_path
 from stnm.web import web
 
 
