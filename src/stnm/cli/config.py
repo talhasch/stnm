@@ -48,7 +48,7 @@ def config(arg: str):
 
     if arg == "show":
         print("-" * 60)
-        print("Config file located at: {}".format(config_path()))
+        print("Config file located at: {}".format(get_config_path()))
         print("-" * 60)
         print(config_contents)
         print("-" * 60)
