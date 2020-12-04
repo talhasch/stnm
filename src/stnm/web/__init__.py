@@ -13,7 +13,7 @@ HOST = os.environ.get("WEB_HOST") or "127.0.0.1"
 def callback():
     print("-" * 40)
     print("Server running at {}:{}".format(HOST, PORT))
-    print("Web UI (not ready) http://{}:{}/ui".format(HOST, PORT))
+    print("Mining Bot Web UI (coming soon) http://{}:{}/ui".format(HOST, PORT))
     print("API http://{}:{}/api".format(HOST, PORT))
     print("-" * 40)
 
@@ -22,4 +22,8 @@ def web():
     http_server = HTTPServer(WSGIContainer(app))
     http_server.listen(PORT, address=HOST)
     IOLoop.instance().add_callback(callback)
-    IOLoop.instance().start()
+
+    try:
+        IOLoop.instance().start()
+    except KeyboardInterrupt:
+        print("\nBye")
