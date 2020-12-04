@@ -9,6 +9,7 @@ from stnm.cli.start import start
 from stnm.cli.status import status
 from stnm.cli.stop import stop
 from stnm.helper import get_config_path
+from stnm.test import do_tests
 from stnm.web import web
 
 
@@ -40,3 +41,6 @@ def main(cmd: str, arg: str):
 
     if cmd == "web":
         web()
+
+    if cmd == "test":
+        do_tests()

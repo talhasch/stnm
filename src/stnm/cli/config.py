@@ -1,12 +1,35 @@
 import re
+from typing import Union, List
 
 import toml
 
 from stnm.cli.common.response import error_response, success_response
 from stnm.helper import get_config_path, get_config, get_config_parsed
 
+"""
+Config Input Structure
 
-class NotValidValue(Exception):
+        +---------------------+
+        |      parameter      |
+        +---------------------+
+input = burnchain.burn_fee_cap=20000000
+        |section |     key    | value |
+        +-----------------------------+
+        |          entry              |
+        +-----------------------------+
+        
+"""
+
+
+class InvalidConfigEntry(Exception):
+    pass
+
+
+class UnavailableConfigParameter(Exception):
+    pass
+
+
+class InvalidValue(Exception):
     pass
 
 
@@ -17,7 +40,7 @@ def bool_validator(s: str) -> bool:
     if s in ["false", "False"]:
         return False
 
-    raise NotValidValue("{} is not a valid boolean value. Use True or true or False or false".format(s))
+    raise InvalidValue("{} is not a valid boolean value. Use True or true or False or false".format(s))
 
 
 def str_validator(s: str) -> str:
@@ -28,10 +51,10 @@ def int_validator(s: str):
     if re.compile("^[0-9]+$").match(s):
         return int(s)
 
-    raise NotValidValue("{} is not a valid integer value".format(s))
+    raise InvalidValue("{} is not a valid integer value".format(s))
 
 
-PARAMS = {
+AVAILABLE_PARAMS = {
     "node.miner": bool_validator,
     "node.seed": str_validator,
     "burnchain.burn_fee_cap": int_validator,
@@ -41,8 +64,40 @@ PARAMS = {
 }
 
 
-def config(arg: str):
-    if arg == "show":
+class ConfigEntry:
+    def __init__(self, section: str, key: str, value: Union[str, int, bool]):
+        self.section = section
+        self.key = key
+        self.value = value
+
+    def __repr__(self):
+        return "<{}.{}={}>".format(self.section, self.key, self.value)
+
+
+def config_input_parser(input_: str) -> List[ConfigEntry]:
+    rv = []
+    entries = input_.split(",")
+
+    for entry in entries:
+        param_split = entry.split("=")
+        if len(param_split) != 2:
+            raise InvalidConfigEntry(entry)
+
+        [param, raw_value] = param_split
+        if param not in AVAILABLE_PARAMS:
+            raise UnavailableConfigParameter(param)
+
+        value = AVAILABLE_PARAMS[param](raw_value)
+
+        [section, key] = param.split(".")
+
+        rv.append(ConfigEntry(section, key, value))
+
+    return rv
+
+
+def config(input_: str):
+    if input_ == "show":
         config_contents = get_config()
         print("-" * 60)
         print("Config file located at: {}".format(get_config_path()))
@@ -51,25 +106,22 @@ def config(arg: str):
         print("-" * 60)
         return
 
-    param_value = arg.split("=")
-    if len(param_value) != 2:
-        error_response(5, arg)
-
-    [param, raw_value] = param_value
-
-    if param not in PARAMS:
-        error_response(6, param)
-
     try:
-        value = PARAMS[param](raw_value)
-    except NotValidValue as ex:
+        entries = config_input_parser(input_)
+    except InvalidConfigEntry as ex:
+        error_response(5, str(ex))
+        return
+    except UnavailableConfigParameter as ex:
+        error_response(6, str(ex))
+        return
+    except InvalidValue as ex:
         error_response(7, str(ex))
         return
 
-    [section, key] = param.split(".")
-
     parsed = get_config_parsed()
-    parsed[section][key] = value
+
+    for e in entries:
+        parsed[e.section][e.key] = e.value
 
     with open(get_config_path(), "w") as f:
         f.write(toml.dumps(parsed))

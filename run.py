@@ -19,7 +19,8 @@ def main():
         "start",
         "stop",
         "config",
-        "web"
+        "web",
+        "test"
     )
 
     parser.add_argument("cmd", choices=cmd_list, nargs="?", default="status")

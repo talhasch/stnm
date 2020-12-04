@@ -6,7 +6,7 @@ ERROR = {
     2: "stacks-node process is not running",
     3: "stacks-node is already running",
     4: "could not stopped node process",
-    5: "not a valid config input '{}' example: node.miner=true",
+    5: "not a valid config entry '{}' example: node.miner=true",
     6: "'{}' doesn't exits in available parameters",
     7: "validation failed with message: '{}'",
 }
