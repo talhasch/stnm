@@ -1,6 +1,6 @@
 # STNM
 
-Stacks node process manager.
+Stacks blockchain node process manager.
 
 ## Getting Started
 
