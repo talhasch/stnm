@@ -8,7 +8,7 @@ from stnm.cli.install import install
 from stnm.cli.start import start
 from stnm.cli.status import status
 from stnm.cli.stop import stop
-from stnm.helper import get_config_path
+from stnm.helper.config import get_config_path
 from stnm.test import do_tests
 from stnm.web import web
 
