@@ -122,21 +122,21 @@ Provides a wrapper HTTP API for STNM commands.
 
 ##### /api/status [GET]
 
-`$ curl http://127.0.0.1:8081/api/status` 
+`$ curl "http://127.0.0.1:8081/api/status"` 
 
 ##### /api/start [POST]
 
-`$ curl -X POST http://127.0.0.1:8081/api/start` 
+`$ curl -X POST "http://127.0.0.1:8081/api/start"` 
 
 ##### /api/stop [POST]
 
-`$ curl -X POST http://127.0.0.1:8081/api/stop`
+`$ curl -X "POST http://127.0.0.1:8081/api/stop"`
 
 ##### /api/config [GET]
 
 Returns current config file as json.
 
-`$ curl http://127.0.0.1:8081/api/config` 
+`$ curl "http://127.0.0.1:8081/api/config"` 
 
 ##### /api/config [POST]
 
