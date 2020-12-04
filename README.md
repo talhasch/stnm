@@ -111,6 +111,9 @@ Possible outputs:
 
 ```{"error": true, "message": "validation failed with message: 'truee is not a valid boolean value. Use True or true or False or false'"}```
 
+***config update doesn't restart stacks-node process. manual `stnm stop` & `stnm start` actions required to make config file updated on stacks-node process.***
+
+
 ### API
 
 Provides a wrapper HTTP API for STNM commands.
