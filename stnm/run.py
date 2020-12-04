@@ -4,7 +4,7 @@ import sys
 
 assert sys.version_info[0] == 3 and sys.version_info[1] >= 5, "Requires Python 3.5 or newer"
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 if sys.platform not in ["linux", "linux2", "darwin"]:
     print("stnm supports only macos and linux")
