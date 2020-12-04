@@ -2,7 +2,7 @@ import re
 from typing import Union, List
 
 from stnm.cli.common.response import error_response, success_response
-from stnm.helper import get_config_path, get_config, get_config_parsed, put_config_parsed
+from stnm.helper.config import get_config_path, get_config, get_config_parsed, put_config_parsed
 
 """
 Config Input Structure

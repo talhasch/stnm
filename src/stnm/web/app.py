@@ -4,7 +4,7 @@ from typing import Dict
 
 from flask import Flask, jsonify
 
-from stnm.helper import get_config_parsed
+from stnm.helper.config import get_config_parsed
 
 app = Flask(__name__)
 
