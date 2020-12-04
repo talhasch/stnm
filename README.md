@@ -4,7 +4,7 @@ Stacks node process manager.
 
 ## Getting Started
 
-STNM written with python. Requires python 3.5+ and pip3. Compatible with Linux and macOS.
+STNM developed with python. Requires python 3.5+ and pip3. Compatible with Linux and macOS.
 
 ### Linux users
 
@@ -25,7 +25,7 @@ You can download python installer from here https://www.python.org/downloads/ if
 
 ## Usage
 
-Most STNM commands outputs in json format for easy integration.
+Most STNM commands output in json format for easy integration.
 
 ### Available commands
 
@@ -67,21 +67,49 @@ Possible outputs:
 
 ### `$ stnm config`
 
-Config command outputs current config file by default.
+Outputs current config file as text by default.
 
-takes an additional input parameter
+An additional input like below allows to modify config file:
 
+`$ stnm config node.miner=true`
+
+More than one config entry can be separated with comma:
+
+`$ stnm config node.miner=true,burnchain.burn_fee_cap=2000`
 
 ```
+Config Input Structure
+
         +---------------------+
         |      parameter      |
         +---------------------+
 input = burnchain.burn_fee_cap=20000000
         |section |     key    | value |
         +-----------------------------+
-        |          entry              |
+        |        config entry         |
         +-----------------------------+
 ```
+
+Available config parameters:
+
+```
+node.miner : boolean
+node.seed : string
+burnchain.burn_fee_cap : integer
+burnchain.process_exit_at_block_height : integer
+burnchain.rpc_port : integer
+burnchain.peer_port : integer
+```
+
+Possible outputs:
+
+```{"success": true, "message": "config file updated"}```
+
+```{"error": true, "message": "not a valid config entry 'node.minerr' example: node.miner=true"}```
+
+```{"error": true, "message": "'node.minerr' doesn't exits in available parameters"}```
+
+```{"error": true, "message": "validation failed with message: 'truee is not a valid boolean value. Use True or true or False or false'"}```
 
 ### API
 
@@ -114,7 +142,7 @@ Updates config file with input passed in json body of http request.
 `$ curl -X POST --header "Content-Type: application/json" --data '{"input": "node.miner=true,burnchain.burn_fee_cap=2000"}' "http://127.0.0.1:8081/api/config"`
 
 
-### Mining bot web UI
+### Mining Bot Web UI
 
 coming soon...
 

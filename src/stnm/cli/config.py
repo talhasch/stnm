@@ -13,7 +13,7 @@ Config Input Structure
 input = burnchain.burn_fee_cap=20000000
         |section |     key    | value |
         +-----------------------------+
-        |          entry              |
+        |        config entry         |
         +-----------------------------+
         
 """
