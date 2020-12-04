@@ -1,8 +1,6 @@
 import re
 from typing import Union, List
 
-import toml
-
 from stnm.cli.common.response import error_response, success_response
 from stnm.helper import get_config_path, get_config, get_config_parsed, put_config_parsed
 
