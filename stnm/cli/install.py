@@ -23,8 +23,15 @@ def info(s: str):
     print("{}stnm: {}{}".format(GRAY_COLOR, s, END_COLOR))
 
 
+devnull = open(os.devnull, 'wb')
+home_dir = os.path.abspath(str(Path.home()))
+
+
 def run_cmd(cmd: str) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, shell=True, universal_newlines=True)
+    env = os.environ.copy()
+    env["PATH"] = os.path.join(home_dir, ".cargo", "bin") + ":" + env["PATH"]
+
+    return subprocess.run(cmd, shell=True, env=env, stdout=devnull, stderr=subprocess.PIPE)
 
 
 def install():
@@ -54,8 +61,6 @@ def install():
             success("rust installed successfully.")
     else:
         success("rust is already installed.")
-
-    home_dir = os.path.abspath(str(Path.home()))
 
     chain_dir = os.path.join(home_dir, "stacks-blockchain-stnm")
     if os.path.isdir(chain_dir):
