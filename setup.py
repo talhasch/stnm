@@ -15,8 +15,7 @@ setup(
         "psutil==5.7.3",
         "toml==0.10.2",
         "tornado==6.1",
-        "Flask==1.1.2",
-        "aparat==0.0.3"
+        "Flask==1.1.2"
     ],
     entry_points={
         "console_scripts": [
