@@ -1,5 +1,4 @@
 import unittest
-import json
 
 from stnm.cli.config import config_input_parser, InvalidConfigEntry, UnavailableConfigParameter, InvalidValue
 
