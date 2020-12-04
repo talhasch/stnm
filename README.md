@@ -113,10 +113,11 @@ Possible outputs:
 
 ***config update doesn't restart stacks-node process. manual `stnm stop` & `stnm start` actions required to make config file updated with stacks-node process.***
 
+### `$ stnm web`
 
-### API
+Starts STNM API and Mining Bot Web UI.
 
-Provides a wrapper HTTP API for STNM commands.
+STNM API Provides a wrapper HTTP API for STNM commands.
 
 #### Endpoints
 
@@ -144,9 +145,10 @@ Updates config file with input passed in json body of http request.
 
 `$ curl -X POST --header "Content-Type: application/json" --data '{"input": "node.miner=true,burnchain.burn_fee_cap=2000"}' "http://127.0.0.1:8081/api/config"`
 
+#### Environment variables for web application
 
-### Mining Bot Web UI
-
-coming soon...
-
+|	Variable       	|	Default     	|
+|	------------	|	------------	|
+|	WEB_PORT     	|	8081     	    |
+|	WEB_HOST     	|	127.0.0.1       |
 
