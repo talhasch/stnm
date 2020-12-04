@@ -8,8 +8,8 @@ assert sys.version_info[0] == 3 and sys.version_info[1] >= 5, "Requires Python 3
 setup(
     name="stnm",
     version="0.0.1",
-    description="stacks node manager",
-    long_description=open("README.md").read(),
+    description="Stacks blockchain node process manager",
+    long_description="Stacks blockchain node process manager",
     packages=find_packages(),
     install_requires=[
         "psutil==5.7.3",
