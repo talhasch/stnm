@@ -2,15 +2,15 @@ import json
 import subprocess
 from typing import Dict
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, abort
 
 from stnm.helper.config import get_config_parsed
 
 app = Flask(__name__)
 
 
-def communicate(cmd: str) -> Dict:
-    process = subprocess.Popen(["stnm", cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+def communicate(cmd: str, arg: str = "") -> Dict:
+    process = subprocess.Popen(["stnm", cmd, arg], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     resp = process.communicate()[0].decode("utf-8")
     return json.loads(resp)
 
@@ -38,3 +38,13 @@ def api_stop():
 @app.route("/api/config", methods=["GET"])
 def api_config_get():
     return jsonify(get_config_parsed())
+
+
+@app.route("/api/config", methods=["POST"])
+def api_config_post():
+    data = request.json
+
+    if type(data) == dict and "input" in data and type(data["input"]) == str and len(data["input"]) > 0:
+        return jsonify(communicate("config", data["input"]))
+
+    abort(400)
