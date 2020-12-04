@@ -9,7 +9,7 @@ setup(
     name="stnm",
     version="0.0.1",
     description="Stacks blockchain node process manager",
-    long_description="Stacks blockchain node process manager",
+    long_description="Stacks blockchain node process manager. See https://github.com/talhasch/stnm for mode details",
     packages=find_packages(),
     install_requires=[
         "psutil==5.7.3",
