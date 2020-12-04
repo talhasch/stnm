@@ -48,3 +48,8 @@ def api_config_post():
         return jsonify(communicate("config", data["input"]))
 
     abort(400)
+
+
+@app.route("/ui", methods=["GET"])
+def ui_index():
+    return "coming soon..."

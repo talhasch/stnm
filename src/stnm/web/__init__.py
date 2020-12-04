@@ -13,8 +13,8 @@ HOST = os.environ.get("WEB_HOST") or "127.0.0.1"
 def callback():
     print("-" * 40)
     print("Server running at {}:{}".format(HOST, PORT))
-    print("Mining Bot Web UI (coming soon) http://{}:{}/ui".format(HOST, PORT))
-    print("API http://{}:{}/api".format(HOST, PORT))
+    print("STNM API http://{}:{}/api".format(HOST, PORT))
+    print("Mining Bot Web UI http://{}:{}/ui".format(HOST, PORT))
     print("-" * 40)
 
 
