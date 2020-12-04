@@ -4,7 +4,7 @@ from typing import Union, List
 import toml
 
 from stnm.cli.common.response import error_response, success_response
-from stnm.helper import get_config_path, get_config, get_config_parsed
+from stnm.helper import get_config_path, get_config, get_config_parsed, put_config_parsed
 
 """
 Config Input Structure
@@ -123,8 +123,8 @@ def config(input_: str):
     for e in entries:
         parsed[e.section][e.key] = e.value
 
-    with open(get_config_path(), "w") as f:
-        f.write(toml.dumps(parsed))
-        f.close()
+    parsed["__modified__"] = True
+
+    put_config_parsed(parsed)
 
     success_response(4)

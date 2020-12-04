@@ -22,3 +22,9 @@ def get_config_parsed() -> Dict:
         f.close()
 
     return toml.loads(config_contents)
+
+
+def put_config_parsed(obj: Dict):
+    with open(get_config_path(), "w") as f:
+        f.write(toml.dumps(obj))
+        f.close()
