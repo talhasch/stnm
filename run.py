@@ -23,7 +23,7 @@ def main():
         "test"
     )
 
-    parser.add_argument("cmd", choices=cmd_list, nargs="?", default="status")
+    parser.add_argument("cmd", choices=cmd_list, nargs="?", default="")
     parser.add_argument("arg", nargs="?", default="")
 
     args = parser.parse_args()
