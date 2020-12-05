@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import sys
 
-from stnm.path import devnull, home_path, cargo_bin_path
+from stnm.constants import DEV_NULL, HOME_PATH, CARGO_BIN_PATH
 from stnm.shell import which, env
 
 GREEN_COLOR = "\033[92m"
@@ -26,7 +26,7 @@ def info(s: str):
 
 
 def run_cmd(cmd: str) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, shell=True, env=env, stdout=devnull, stderr=subprocess.PIPE)
+    return subprocess.run(cmd, shell=True, env=env, stdout=DEV_NULL, stderr=subprocess.PIPE)
 
 
 def install():
@@ -63,7 +63,7 @@ def install():
 
     assert which("cargo") is not None
 
-    chain_dir = os.path.join(home_path, "stacks-blockchain-stnm")
+    chain_dir = os.path.join(HOME_PATH, "stacks-blockchain-stnm")
     if os.path.isdir(chain_dir):
         shutil.rmtree(chain_dir)
 
@@ -83,7 +83,7 @@ def install():
     else:
         success("done")
 
-    cmd = "cp target/release/stacks-node {}".format(cargo_bin_path)
+    cmd = "cp target/release/stacks-node {}".format(CARGO_BIN_PATH)
     info("copying stacks-node executable to cargo directory...")
     if run_cmd(cmd).returncode != 0:
         error("an error occurred")

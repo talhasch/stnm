@@ -1,7 +1,7 @@
 import subprocess
 
 from stnm.config import get_config_path, get_config_parsed, put_config_parsed
-from stnm.path import devnull
+from stnm.constants import DEV_NULL
 from stnm.process import get_node_process
 from stnm.response import error_response, success_response
 from stnm.shell import env
@@ -17,5 +17,5 @@ def start():
         del config["__modified__"]
         put_config_parsed(config)
 
-    process = subprocess.Popen(["stacks-node", "start", "--config", get_config_path()], env=env, stdout=devnull, stderr=devnull)
+    process = subprocess.Popen(["stacks-node", "start", "--config", get_config_path()], env=env, stdout=DEV_NULL, stderr=DEV_NULL)
     success_response(3, **{"pid": process.pid})

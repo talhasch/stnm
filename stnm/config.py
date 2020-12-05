@@ -5,12 +5,12 @@ from typing import Union, List
 
 import toml
 
-from stnm.path import home_path
+from stnm.constants import HOME_PATH
 from stnm.response import error_response, success_response
 
 
 def get_config_path() -> str:
-    return os.path.abspath(os.path.join(home_path, "stnm.conf"))
+    return os.path.abspath(os.path.join(HOME_PATH, "stnm.conf"))
 
 
 def get_config() -> str:

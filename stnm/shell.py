@@ -2,7 +2,7 @@ import os
 import shutil
 from typing import Optional
 
-from stnm.path import cargo_bin_path
+from stnm.constants import CARGO_BIN_PATH
 
 env = os.environ.copy()
 env["PATH"] = cargo_bin_path + os.path.pathsep + env["PATH"]

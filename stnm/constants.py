@@ -1,4 +1,9 @@
+import os
+from pathlib import Path
 
+DEV_NULL = open(os.devnull, "wb")
+HOME_PATH = os.path.abspath(str(Path.home()))
+CARGO_BIN_PATH = os.path.join(HOME_PATH, ".cargo", "bin")
 
 DEFAULT_CONFIG = """
 [node]
