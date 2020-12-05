@@ -46,6 +46,10 @@ def install():
         error("git is not found on your system. please install it first")
         return
 
+    if which("curl") is None:
+        error("curl is not found on your system. please install it first")
+        return
+
     if which("apt-get") is not None:
         info("install dependencies for linux...")
         cmd = "apt-get install build-essential cmake libssl-dev pkg-config -y"
