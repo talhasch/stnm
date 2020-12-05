@@ -8,20 +8,20 @@ STNM developed with python. Requires python 3.5+ and pip3. Compatible with Linux
 
 ### Linux users
 
-Make sure you have following packages installed on your system.
+Make sure you have following python dependencies installed on your system.
 
 `$ apt update && apt install build-essential python3-pip python3-dev python3-setuptools -y` 
 
 ### macOS users
 You can download python installer from here https://www.python.org/downloads/ if you don't have it installed on your system.
 
-You may need to install `git` and `curl` manually if you don't have them installed your system.
+Additionally you may need to install `git` and `curl` manually if you don't have them installed your system.
 
-## Installation with pip (easier way)
+## Install with pip (easier way)
  
 `$ pip3 install stnm -U` 
 
-## Installation from source code
+## Install from source code
 
 `$ git clone https://github.com/talhasch/stnm && cd stnm && pip3 install -e .` 
 
