@@ -5,12 +5,13 @@ from typing import Dict
 from flask import Flask, jsonify, request, abort
 
 from stnm.config import get_config_parsed
+from stnm.shell import env
 
 app = Flask(__name__)
 
 
 def communicate(cmd: str, arg: str = "") -> Dict:
-    process = subprocess.Popen(["stnm", cmd, arg], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(["stnm", cmd, arg], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     resp = process.communicate()[0].decode("utf-8")
     return json.loads(resp)
 
