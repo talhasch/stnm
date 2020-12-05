@@ -119,7 +119,7 @@ Possible outputs:
 
 Starts STNM API and Web UI.
 
-STNM API Provides a wrapper HTTP API for STNM commands.
+**STNM API** Provides a wrapper HTTP API for STNM commands.
 
 #### Endpoints
 
