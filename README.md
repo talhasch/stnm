@@ -15,9 +15,9 @@ Make sure you have following packages installed on your system.
 ### macOS users
 You can download python installer from here https://www.python.org/downloads/ if you don't have it installed on your system.
 
-## Installation with pip3 (easier way)
+## Installation with pip (easier way)
  
-`$ pip3 install stnm` 
+`$ pip3 install stnm -U` 
 
 ## Installation from source code
 
