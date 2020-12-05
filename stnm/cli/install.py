@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 from stnm.cli.common.util import which
@@ -17,6 +18,7 @@ def success(s: str):
 
 def error(s: str):
     print("{}stnm: {}{}".format(RED_COLOR, s, END_COLOR))
+    sys.exit(1)
 
 
 def info(s: str):
@@ -96,3 +98,5 @@ def install():
     assert which("stacks-node", path=env["PATH"]) is not None
 
     success("installation completed successfully 🎉")
+
+    sys.exit(0)
