@@ -69,6 +69,8 @@ def install():
     else:
         success("rust is already installed")
 
+    assert which("cargo", path=env["PATH"]) is not None
+
     chain_dir = os.path.join(home_dir, "stacks-blockchain-stnm")
     if os.path.isdir(chain_dir):
         shutil.rmtree(chain_dir)
