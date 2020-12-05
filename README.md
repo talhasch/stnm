@@ -21,13 +21,9 @@ It's always good to upgrade pip.
 
 Additionally you may need to install `git` and `curl` manually if you don't have them installed your system.
 
-## Install with pip (easier way)
+## Install 
  
 `$ pip3 install stnm -U` 
-
-## Install from source code
-
-`$ git clone https://github.com/talhasch/stnm && cd stnm && pip3 install -e .` 
 
 ## Usage
 
@@ -121,7 +117,7 @@ Possible outputs:
 
 ### `$ stnm web`
 
-Starts STNM API and Mining Bot Web UI.
+Starts STNM API and Web UI.
 
 STNM API Provides a wrapper HTTP API for STNM commands.
 
