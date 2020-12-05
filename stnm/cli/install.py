@@ -52,7 +52,7 @@ def install():
         if run_cmd(cmd).returncode != 0:
             error("an error occurred")
         else:
-            success("done ✅")
+            success("done")
 
     info("checking rust...")
     if run_cmd("rustc --version").returncode != 0:
@@ -61,7 +61,7 @@ def install():
         if run_cmd(cmd).returncode != 0:
             error("an error occurred")
         else:
-            success("done ✅")
+            success("done")
     else:
         success("rust is already installed")
 
@@ -74,7 +74,7 @@ def install():
     if run_cmd(cmd).returncode != 0:
         error("an error occurred")
     else:
-        success("done ✅")
+        success("done")
 
     os.chdir(chain_dir)
 
@@ -83,14 +83,14 @@ def install():
     if run_cmd(cmd).returncode != 0:
         error("an error occurred")
     else:
-        success("done ✅")
+        success("done")
 
     cmd = "cp target/release/stacks-node {}".format(cargo_bin_dir)
     info("copying stacks-node executable to cargo directory...")
     if run_cmd(cmd).returncode != 0:
         error("an error occurred")
     else:
-        success("done ✅")
+        success("done")
 
     # clean up
     shutil.rmtree(chain_dir)
