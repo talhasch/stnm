@@ -42,6 +42,14 @@ def install():
         success("stacks-node already installed")
         return
 
+    if which("apt-get") is not None:
+        info("install dependencies for linux...")
+        cmd = "apt install build-essential cmake libssl-dev pkg-config git curl -y"
+        if run_cmd(cmd).returncode != 0:
+            error("an error occurred")
+        else:
+            success("done")
+
     if which("git") is None:
         error("git is not found on your system. please install it first")
         return
@@ -49,14 +57,6 @@ def install():
     if which("curl") is None:
         error("curl is not found on your system. please install it first")
         return
-
-    if which("apt-get") is not None:
-        info("install dependencies for linux...")
-        cmd = "apt-get install build-essential cmake libssl-dev pkg-config -y"
-        if run_cmd(cmd).returncode != 0:
-            error("an error occurred")
-        else:
-            success("done")
 
     info("checking rust...")
     if run_cmd("rustc --version").returncode != 0:
