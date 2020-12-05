@@ -27,7 +27,7 @@ Additionally you may need to install `git` and `curl` manually if you don't have
 
 ## Usage
 
-Most STNM commands output in json format for easy integration.
+*Most STNM commands output in json format for easy integration.*
 
 ### Available commands
 
@@ -37,7 +37,7 @@ stacks-blockchain auto installer. If you don't have stacks blockchain (stacks-no
 
 ### `$ stnm status`
 
-Outputs stacks-node process status with json format.
+Outputs stacks-node process status.
 
 Possible outputs:
 
