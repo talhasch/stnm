@@ -7,7 +7,7 @@ assert sys.version_info[0] == 3 and sys.version_info[1] >= 5, "Requires Python 3
 
 setup(
     name="stnm",
-    version="0.1.1",
+    version="0.1.2",
     description="Stacks blockchain node process manager",
     long_description="Stacks blockchain node process manager. See https://github.com/talhasch/stnm for mode details.",
     packages=find_packages(exclude=("venv",)),
