@@ -13,7 +13,7 @@ The following one-liner code will install dependencies to get started with STNM.
 `$ apt update && apt install build-essential python3-pip python3-dev python3-setuptools -y && pip3 install --upgrade pip` 
 
 ### macOS users
-You can download python installer from here https://www.python.org/downloads/ if you don't have it installed on your system.
+You can download python installer from here: https://www.python.org/downloads/ if you don't have it installed on your system.
 
 It's always good to upgrade pip.
 
