@@ -34,7 +34,7 @@ def install():
         success("stacks-node already installed")
         return
 
-    if which("apt-get") is not None:
+    if which("apt") is not None:
         info("install dependencies for linux...")
         cmd = "apt install build-essential cmake libssl-dev pkg-config git curl -y"
         if run_cmd(cmd).returncode != 0:
