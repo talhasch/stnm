@@ -4,7 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from stnm.cli.common.util import which
+from stnm.util import which
 
 GREEN_COLOR = "\033[92m"
 RED_COLOR = "\033[91m"

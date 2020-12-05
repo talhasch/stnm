@@ -19,6 +19,6 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "stnm=stnm.run:main"
+            "stnm=stnm.main:main"
         ]
     })

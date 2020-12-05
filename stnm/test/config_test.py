@@ -1,6 +1,6 @@
 import unittest
 
-from stnm.cli.config import config_input_parser, InvalidConfigEntry, UnavailableConfigParameter, InvalidValue
+from stnm.config import config_input_parser, InvalidConfigEntry, UnavailableConfigParameter, InvalidValue
 
 
 class ConfigTestCase(unittest.TestCase):

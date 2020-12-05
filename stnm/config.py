@@ -1,8 +1,39 @@
+import os
 import re
+from pathlib import Path
+from typing import Dict
 from typing import Union, List
 
-from stnm.cli.common.response import error_response, success_response
-from stnm.helper.config import get_config_path, get_config, get_config_parsed, put_config_parsed
+import toml
+
+from stnm.response import error_response, success_response
+
+
+def get_config_path() -> str:
+    return os.path.abspath(os.path.join(str(Path.home()), "stnm.conf"))
+
+
+def get_config() -> str:
+    with open(get_config_path(), "r") as f:
+        config_contents = f.read()
+        f.close()
+
+    return config_contents
+
+
+def get_config_parsed() -> Dict:
+    with open(get_config_path(), "r") as f:
+        config_contents = f.read()
+        f.close()
+
+    return toml.loads(config_contents)
+
+
+def put_config_parsed(obj: Dict):
+    with open(get_config_path(), "w") as f:
+        f.write(toml.dumps(obj))
+        f.close()
+
 
 """
 Config Input Structure

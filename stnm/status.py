@@ -1,6 +1,6 @@
-from stnm.cli.common.process import get_node_process
+from stnm.process import get_node_process
 
-from stnm.cli.common.response import error_response, success_response
+from stnm.response import error_response, success_response
 
 
 def status():
