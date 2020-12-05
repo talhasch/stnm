@@ -2,9 +2,9 @@ import subprocess
 
 from stnm.config import get_config_path, get_config_parsed, put_config_parsed
 from stnm.constants import DEV_NULL
-from stnm.process import get_node_process
 from stnm.response import error_response, success_response
 from stnm.shell import env
+from stnm.shell import get_node_process
 
 
 def start():

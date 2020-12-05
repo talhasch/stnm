@@ -1,6 +1,5 @@
-from stnm.process import get_node_process
-
 from stnm.response import error_response, success_response
+from stnm.shell import get_node_process
 
 
 def status():
