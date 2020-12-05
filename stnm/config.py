@@ -1,16 +1,16 @@
 import os
 import re
-from pathlib import Path
 from typing import Dict
 from typing import Union, List
 
 import toml
 
+from stnm.path import home_path
 from stnm.response import error_response, success_response
 
 
 def get_config_path() -> str:
-    return os.path.abspath(os.path.join(str(Path.home()), "stnm.conf"))
+    return os.path.abspath(os.path.join(home_path, "stnm.conf"))
 
 
 def get_config() -> str:

@@ -2,9 +2,9 @@ import os
 import shutil
 import subprocess
 import sys
-from pathlib import Path
 
-from stnm.util import which
+from stnm.path import devnull, home_path, cargo_bin_path
+from stnm.shell import which, env
 
 GREEN_COLOR = "\033[92m"
 RED_COLOR = "\033[91m"
@@ -23,14 +23,6 @@ def error(s: str):
 
 def info(s: str):
     print("{}stnm: {}{}".format(GRAY_COLOR, s, END_COLOR))
-
-
-devnull = open(os.devnull, 'wb')
-home_dir = os.path.abspath(str(Path.home()))
-cargo_bin_dir = os.path.join(home_dir, ".cargo", "bin")
-
-env = os.environ.copy()
-env["PATH"] = cargo_bin_dir + ":" + env["PATH"]
 
 
 def run_cmd(cmd: str) -> subprocess.CompletedProcess:
@@ -69,9 +61,9 @@ def install():
     else:
         success("rust is already installed")
 
-    assert which("cargo", path=env["PATH"]) is not None
+    assert which("cargo") is not None
 
-    chain_dir = os.path.join(home_dir, "stacks-blockchain-stnm")
+    chain_dir = os.path.join(home_path, "stacks-blockchain-stnm")
     if os.path.isdir(chain_dir):
         shutil.rmtree(chain_dir)
 
@@ -91,7 +83,7 @@ def install():
     else:
         success("done")
 
-    cmd = "cp target/release/stacks-node {}".format(cargo_bin_dir)
+    cmd = "cp target/release/stacks-node {}".format(cargo_bin_path)
     info("copying stacks-node executable to cargo directory...")
     if run_cmd(cmd).returncode != 0:
         error("an error occurred")
@@ -101,8 +93,6 @@ def install():
     # clean up
     shutil.rmtree(chain_dir)
 
-    assert which("stacks-node", path=env["PATH"]) is not None
+    assert which("stacks-node") is not None
 
     success("installation completed successfully 🎉")
-
-    sys.exit(0)

@@ -1,21 +1,27 @@
 import os
+import sys
 
 from stnm.config import config
 from stnm.config import get_config_path
 from stnm.constants import DEFAULT_CONFIG
 from stnm.install import install
 from stnm.response import error_response
+from stnm.shell import which
 from stnm.start import start
 from stnm.status import status
 from stnm.stop import stop
 from stnm.test import do_tests
-from stnm.util import which
 from stnm.web import web
 
 
 def main(cmd: str, arg: str):
     if cmd == "install":
         install()
+        sys.exit(0)
+
+    if cmd == "test":
+        do_tests()
+        sys.exit(0)
 
     # check node binary
     if which("stacks-node") is None:
@@ -41,6 +47,3 @@ def main(cmd: str, arg: str):
 
     if cmd == "web":
         web()
-
-    if cmd == "test":
-        do_tests()
