@@ -145,7 +145,9 @@ Returns current config file as json.
 
 Updates config file with input passed in json body of http request.
 
-`$ curl -X POST --header "Content-Type: application/json" --data '{"input": "node.miner=true,burnchain.burn_fee_cap=2000"}' "http://127.0.0.1:8081/api/config"`
+``` 
+$ curl -X POST --header "Content-Type: application/json" --data '{"input": "node.miner=true,burnchain.burn_fee_cap=2000"}' "http://127.0.0.1:8081/api/config"
+```
 
 #### Environment variables for web application
 
