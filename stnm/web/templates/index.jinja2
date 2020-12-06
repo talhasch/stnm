@@ -8,11 +8,6 @@
         .card {
             margin: 20px 0 40px 0;
         }
-
-        .card table {
-            margin-top: 20px;
-            margin-bottom: 0;
-        }
     </style>
 </head>
 <body>
@@ -24,12 +19,6 @@
 <script src="{{ url_for("static", filename ="vendor/bootstrap.bundle.min.js") }}"></script>
 <script src="{{ url_for("static", filename ="vendor/babel.min.js") }}"></script>
 <script type="text/babel">
-    /*
-   fetch("/api/status").then(r => r.json()).then(r => {
-       // console.log(r)
-   })
-    */
-
     const {
         BrowserRouter: Router,
         Switch,
@@ -37,45 +26,18 @@
         Link
     } = ReactRouterDOM;
 
-
-    {% include "js/config-provider.jsx" %}
+    {% include "js/node-provider.jsx" %}
     {% include "js/node-info.jsx" %}
     {% include "js/panel.jsx" %}
-
-    /*
-
-    const App = () => {
-        return (
-            <ConfigProvider>
-                <Home/>
-            </ConfigProvider>
-        );
-    };
-
-    const Home = () => {
-        const {data, loadConfig} = React.useContext(ConfigContext);
-
-        React.useEffect(() => {
-            loadConfig();
-        }, []);
-
-        console.log(data)
-
-        return <span>henlo</span>
-    }
-
-
-    ReactDOM.render(<App/>, document.getElementById("root"));
-    */
 
     const App = () => {
         return <Router>
             <div className="container">
                 <Switch>
                     <Route exact={true} strict={true} path="/ui">
-                        <ConfigProvider>
+                        <NodeProvider>
                             <Panel/>
-                        </ConfigProvider>
+                        </NodeProvider>
                     </Route>
                 </Switch>
             </div>
