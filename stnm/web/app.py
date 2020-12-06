@@ -1,13 +1,16 @@
+import os
 import json
 import subprocess
 from typing import Dict
 
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, render_template
 
 from stnm.config import get_config_parsed
 from stnm.shell import env
 
 app = Flask(__name__)
+
+this_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 def communicate(cmd: str, arg: str = "") -> Dict:
@@ -53,4 +56,4 @@ def api_config_post():
 
 @app.route("/ui", methods=["GET"])
 def ui_index():
-    return "coming soon..."
+    return render_template("index.jinja2")
