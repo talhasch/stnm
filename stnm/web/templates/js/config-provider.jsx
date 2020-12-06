@@ -2,7 +2,8 @@ const ConfigContext = React.createContext();
 
 const CONFIG_INITIAL_STATE = {
     loading: null,
-    config: null,
+    raw: null,
+    object: null,
     inProgress: false
 }
 
@@ -12,7 +13,7 @@ const configReducer = (state, action) => {
             return {loading: true, config: null}
         }
         case "FETCHED": {
-            return {loading: true, config: action.payload}
+            return {loading: true, raw: action.payload.raw, object: action.payload.object}
         }
         default: {
             return state;
@@ -41,11 +42,12 @@ const configProgressEndAct = () => ({
 
 const ConfigProvider = ({children}) => {
     const [state, dispatch] = React.useReducer(configReducer, CONFIG_INITIAL_STATE)
-    const {loading, config, inProgress} = state;
+    const {loading, raw, object, inProgress} = state;
 
     const value = {
         loading,
-        config,
+        raw,
+        object,
         inProgress,
         fetchConfig: () => {
             dispatch(configFetchAct());

@@ -1,5 +1,5 @@
 const ConfigInfo = () => {
-    const {loading, config, inProgress, fetchConfig} = React.useContext(ConfigContext);
+    const {loading, raw, object, inProgress, fetchConfig} = React.useContext(ConfigContext);
     const {status} = React.useContext(NodeContext);
 
     React.useEffect(() => {
@@ -19,8 +19,8 @@ const ConfigInfo = () => {
     return <div className="card config-info">
         <h5 className="card-header">Config</h5>
         <div className="card-body">
-            {config !== null && (<pre className="config-pre">
-            {JSON.stringify(config, null, 2)}
+            {raw !== null && (<pre className="config-pre">
+            {raw}
             </pre>)}
         </div>
     </div>
