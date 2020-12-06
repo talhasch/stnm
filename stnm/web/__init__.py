@@ -23,7 +23,4 @@ def web():
     http_server.listen(PORT, address=HOST)
     IOLoop.instance().add_callback(callback)
 
-    try:
-        IOLoop.instance().start()
-    except KeyboardInterrupt:
-        print("\nBye")
+    IOLoop.instance().start()

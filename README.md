@@ -149,7 +149,7 @@ Returns current config file contents in json and text format.
 
 `$ curl "http://127.0.0.1:8081/api/config"` 
 
-Example output:
+Sample response:
 
 ```
 {
@@ -190,6 +190,22 @@ Example output:
 }
 ```
 
+##### /api/config-params [GET]
+
+Returns a list of available config options.
+
+Sample response:
+
+```
+[
+    "node.miner",
+    "node.seed",
+    "burnchain.burn_fee_cap",
+    "burnchain.peer_port",
+    "burnchain.process_exit_at_block_height",
+    "burnchain.rpc_port"
+]
+```
 
 #### Environment variables for web application
 

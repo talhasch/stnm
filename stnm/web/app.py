@@ -5,7 +5,7 @@ from typing import Dict
 
 from flask import Flask, jsonify, request, abort, render_template
 
-from stnm.config import get_config_parsed, get_config
+from stnm.config import get_config_parsed, get_config, AVAILABLE_PARAMS
 from stnm.shell import env
 
 app = Flask(__name__)
@@ -60,6 +60,11 @@ def api_config_post():
         return jsonify(communicate("config", data["input"]))
 
     abort(400)
+
+
+@app.route("/api/config-params", methods=["GET"])
+def api_config_params():
+    return jsonify(list(AVAILABLE_PARAMS.keys()))
 
 
 @app.route("/ui", methods=["GET"])
