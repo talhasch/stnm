@@ -2,6 +2,7 @@ const Panel = () => {
     return (
         <div>
             <NodeInfo/>
+            <ConfigInfo/>
 
             {/*
             <div className="card mining">

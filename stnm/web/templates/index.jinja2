@@ -8,6 +8,13 @@
         .card {
             margin: 20px 0 40px 0;
         }
+
+        .config-pre {
+            font-size: 12px;
+            max-height: 400px;
+            overflow: auto;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -27,7 +34,9 @@
     } = ReactRouterDOM;
 
     {% include "js/node-provider.jsx" %}
+    {% include "js/config-provider.jsx" %}
     {% include "js/node-info.jsx" %}
+    {% include "js/config-info.jsx" %}
     {% include "js/panel.jsx" %}
 
     const App = () => {
@@ -36,7 +45,9 @@
                 <Switch>
                     <Route exact={true} strict={true} path="/ui">
                         <NodeProvider>
-                            <Panel/>
+                            <ConfigProvider>
+                                <Panel/>
+                            </ConfigProvider>
                         </NodeProvider>
                     </Route>
                 </Switch>
