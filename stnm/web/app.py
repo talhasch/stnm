@@ -41,7 +41,7 @@ def api_stop():
 
 @app.route("/api/config", methods=["GET"])
 def api_config_get():
-    config = get_config()
+    config = get_config().strip()
     config_parsed = get_config_parsed()
 
     resp = {
