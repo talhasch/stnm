@@ -1,18 +1,8 @@
 const ConfigInfo = () => {
-    const {loading, raw, object, inProgress, fetchConfig} = React.useContext(ConfigContext);
+    const {loading, raw} = React.useContext(ConfigContext);
     const {status} = React.useContext(NodeContext);
 
-    React.useEffect(() => {
-        if (loading === null) {
-            fetchConfig();
-        }
-    }, []);
-
-    if (!status) {
-        return null;
-    }
-
-    if (loading === null) {
+    if (loading === null || !status) {
         return null;
     }
 

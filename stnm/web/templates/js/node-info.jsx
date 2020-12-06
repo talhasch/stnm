@@ -1,12 +1,6 @@
 const NodeInfo = () => {
     const {loading, status, pid, inProgress, fetchStatus, stopNode, startNode} = React.useContext(NodeContext);
 
-    React.useEffect(() => {
-        if (loading === null) {
-            fetchStatus();
-        }
-    }, []);
-
     if (loading === null) {
         return null;
     }
