@@ -1,11 +1,16 @@
 const ConfigInfo = () => {
     const {loading, config, inProgress, fetchConfig} = React.useContext(ConfigContext);
+    const {status} = React.useContext(NodeContext);
 
     React.useEffect(() => {
         if (loading === null) {
             fetchConfig();
         }
     }, []);
+
+    if (!status) {
+        return null;
+    }
 
     if (loading === null) {
         return null;
