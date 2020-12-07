@@ -1,12 +1,11 @@
-import os
 import json
-import subprocess
+import os
 from typing import Dict
 
 from flask import Flask, jsonify, request, abort, render_template
 
 from stnm.config import get_config_parsed, get_config, AVAILABLE_PARAMS
-from stnm.shell import env
+from stnm.shell import which
 
 app = Flask(__name__)
 
@@ -14,9 +13,9 @@ this_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 def communicate(cmd: str, arg: str = "") -> Dict:
-    process = subprocess.Popen(["stnm", cmd, arg], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    resp = process.communicate()[0].decode("utf-8")
-    return json.loads(resp)
+    executable = which("stnm")
+    out = os.popen("{} {} {} &".format(executable, cmd, arg)).read()
+    return json.loads(out)
 
 
 @app.route("/api", methods=["GET"])
