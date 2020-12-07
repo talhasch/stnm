@@ -17,6 +17,7 @@ const ConfigInfo = () => {
             </pre>)}
         </div>
 
+        {/*
 
         <Modal show={true} onHide={() => {
 
@@ -29,6 +30,6 @@ const ConfigInfo = () => {
 
             </Modal.Footer>
         </Modal>
-
+    */}
     </div>
 };
