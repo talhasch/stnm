@@ -2,7 +2,7 @@
 
 Stacks blockchain node process manager.
 
-## Getting Started
+---
 
 STNM developed with python. Requires python 3.5+ and pip3. Compatible with Linux and macOS.
 
@@ -21,7 +21,9 @@ It's always good to upgrade pip.
 
 Additionally you may need to install `git` and `curl` manually if you don't have them installed your system.
 
-## Install 
+--- 
+
+## Get STNM
  
 `$ pip3 install stnm -U` 
 
@@ -29,11 +31,10 @@ Additionally you may need to install `git` and `curl` manually if you don't have
 
 *Most STNM commands output in json format for easy integration.*
 
-### Available commands
 
 ### `$ stnm install`
 
-stacks-blockchain auto installer. If you don't have stacks blockchain (stacks-node) installed on your system run this command to install it.
+Stacks blockchain auto installer. This command would be your first step if you haven't compiled stacks blockchain binary yet. 
 
 ### `$ stnm status`
 
