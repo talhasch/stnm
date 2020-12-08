@@ -11,6 +11,7 @@ const Panel = () => {
         <div>
             <NodeInfo/>
             <ConfigInfo/>
+            <Mining/>
         </div>
     );
 };
