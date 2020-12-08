@@ -34,9 +34,13 @@
         Link
     } = ReactRouterDOM;
 
+    const {Modal, Button} = ReactBootstrap;
+    const {useEffect, useState, Fragment} = React;
+
     {% include "jsx/node-provider.jsx" %}
     {% include "jsx/config-provider.jsx" %}
     {% include "jsx/node-info.jsx" %}
+    {% include "jsx/config-editor.jsx" %}
     {% include "jsx/config-info.jsx" %}
     {% include "jsx/panel.jsx" %}
 
