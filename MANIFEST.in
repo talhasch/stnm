@@ -1,0 +1,7 @@
+include LICENSE
+include README.rst
+
+recursive-include stnm/web/static *
+recursive-include stnm/web/templates *
+
+recursive-exclude stnm *.pyc
