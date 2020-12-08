@@ -1,6 +1,6 @@
 const NodeInfo = () => {
     const {loading, status, pid, inProgress, fetchStatus, stopNode, startNode} = React.useContext(NodeContext);
-    const {fetchConfig} = React.useContext(ConfigContext);
+    const {fetchConfig, object} = React.useContext(ConfigContext);
 
     if (loading === null) {
         return null;
@@ -33,19 +33,24 @@ const NodeInfo = () => {
         }} className={`btn btn-danger btn-sm ${!status || inProgress ? "disabled" : ""}`}>Stop Node</button>;
 
     return (
-        <div className="card node-info">
-            <h5 className="card-header">Node Info</h5>
-            <div className="card-body">
-                <div className="d-flex justify-content-between align-items-center">
-                    <div>{title}</div>
-                    <div>{btnStart}{" "}{btnStop}</div>
-                </div>
-            </div>
-            {status && (
-                <div className="card-footer text-muted">
-                    Pid: {pid}
-                </div>
+        <Fragment>
+            {(status && object && object.__modified__) && (
+                <Alert variant="info">You need to stop and start the node for your last changes to take effect with blockchain.</Alert>
             )}
-        </div>
+            <div className="card node-info">
+                <h5 className="card-header">Node Info</h5>
+                <div className="card-body">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <div>{title}</div>
+                        <div>{btnStart}{" "}{btnStop}</div>
+                    </div>
+                </div>
+                {status && (
+                    <div className="card-footer text-muted">
+                        Pid: {pid}
+                    </div>
+                )}
+            </div>
+        </Fragment>
     );
 };
