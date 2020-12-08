@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>STNM</title>
     <link rel="stylesheet" href="{{ url_for("static", filename ="vendor/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename ="vendor/toastr.min.css") }}">
     <style type="text/css">
         .card {
             margin: 20px 0 40px 0;
@@ -22,9 +23,10 @@
 <script src="{{ url_for("static", filename ="vendor/react.production.min.js") }}"></script>
 <script src="{{ url_for("static", filename ="vendor/react-dom.production.min.js") }}"></script>
 <script src="{{ url_for("static", filename ="vendor/react-router-dom.min.js") }}"></script>
-<script src="{{ url_for("static", filename ="vendor/jquery.slim.min.js") }}"></script>
+<script src="{{ url_for("static", filename ="vendor/jquery.min.js") }}"></script>
 <script src="{{ url_for("static", filename ="vendor/bootstrap.bundle.min.js") }}"></script>
 <script src="{{ url_for("static", filename ="vendor/react-bootstrap.min.js") }}"></script>
+<script src="{{ url_for("static", filename ="vendor/toastr.min.js") }}"></script>
 <script src="{{ url_for("static", filename ="vendor/babel.min.js") }}"></script>
 <script type="text/babel">
     const {
@@ -34,7 +36,7 @@
         Link
     } = ReactRouterDOM;
 
-    const {Modal, Button} = ReactBootstrap;
+    const {Modal, Button, FormControl, Row, Col} = ReactBootstrap;
     const {useEffect, useState, Fragment} = React;
 
     {% include "jsx/node-provider.jsx" %}

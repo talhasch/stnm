@@ -26,13 +26,15 @@ const ConfigInfo = () => {
         </div>
 
         {edit && (
-            <Modal show={true} centered={true} animation={false} backdrop="static" keyboard={false} onHide={() => {
+            <Modal show={true} size="lg" centered={true} animation={false} backdrop="static" keyboard={false} onHide={() => {
                 setEdit(false);
             }}>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Config</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><ConfigEditor/></Modal.Body>
+                <Modal.Body><ConfigEditor onSuccess={() => {
+                    setEdit(false);
+                }}/></Modal.Body>
             </Modal>
         )}
     </Fragment>
