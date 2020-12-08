@@ -1,5 +1,6 @@
 const NodeInfo = () => {
     const {loading, status, pid, inProgress, fetchStatus, stopNode, startNode} = React.useContext(NodeContext);
+    const {fetchConfig} = React.useContext(ConfigContext);
 
     if (loading === null) {
         return null;
@@ -19,6 +20,7 @@ const NodeInfo = () => {
         onClick={() => {
             startNode().then(() => {
                 fetchStatus();
+                fetchConfig();
             })
         }}
         className={`btn btn-success btn-sm ${status || inProgress ? "disabled" : ""}`}>Start Node</button>;
